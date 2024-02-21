@@ -180,7 +180,7 @@ prompt_topics = system_prompt + example_prompt + main_prompt
 # Pre-calculate embeddings
 embedding_model = SentenceTransformer("BAAI/bge-small-en")
 #----------------------------------------------------------------------------------------------
-umap_model = UMAP(n_neighbors=2, n_components=2, min_dist=0.0, metric='cosine', random_state=42)
+umap_model = UMAP(n_neighbors=5, n_components=5, min_dist=0.0, metric='cosine', random_state=42)
 hdbscan_model = HDBSCAN(min_cluster_size=5, metric='euclidean', cluster_selection_method='eom', prediction_data=True)
 #----------------------------------------------------------------------------------------------------------------------
 
