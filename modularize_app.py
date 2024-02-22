@@ -121,10 +121,10 @@ groups_info = {
 
 rename_columns = {'How long have you worked at the organization?': 'Service_Length',
                 'What is your annual salary':'Salary',
-                #   'Which part of the business do you work in?',
-                #   'Which function do you work in?',
-                #   'Which grade do you work at?',
-                #   'Which brand do you work in?',
+                'Which part of the business do you work in?': 'Organization_Part',
+                'Which function do you work in?': 'Organization_Function',
+                'Which grade do you work at?': 'Grade',
+                'Which brand do you work in?': 'Brand',
                 'What is your role in the organisation?':'Organisational_Role',
                 'Which department do you work in?': 'Department',
                 'Job Share': 'Job_Share',
@@ -215,13 +215,13 @@ rename_columns = {'How long have you worked at the organization?': 'Service_Leng
                 'Working here is important to the way that I think of myself as a person': 'Working at Business is important to the way that I think of myself as a person',
                 'The information and resources I need to do my job effectively are readily available': 'The information and resources I need to do my job effectively are available',
                 'The company hires people from diverse backgrounds': 'Business hires people from diverse backgrounds',
-                'Would you agree that you are able to reach your full potential at work?': 'Would you agree that you are able to reach your full potential at work?',
                 'Which of the following statements best describes how you feel in your team': 'Which of the following statements best describes how you feel in your team',
                 'Is there anything this organisation can do to recruit a more diverse group of employees?': 'What ONE thing do you think the business should be doing to recruit a diverse range of employees?',
                 'What things do you think the organisation does well in terms of creating a diverse and inclusive workplace?': 'What ONE thing do you think the business does well in terms of creating a diverse and inclusive workplace?',
                 'What things do you think the organisation should be doing to create a work environment where everyone is respected and can thrive regardless of personal circumstances or background?': 'What ONE thing do you think the business should be doing to create a work environment where everyone is respected and can thrive regardless of personal circumstances or background?',
                 'In what ways can this organisation ensure that everyone is treated fairly and can thrive?': 'In what ways can this organisation ensure that everyone is treated fairly and can thrive?', ## Is it the same as above question???
                 'We want to support employees in setting up networks for our people if there is demand. What ERG would you be interested in us establishing?': 'We want to support employees in setting up networks for our people if there is demand. What ERG would you be interested in us establishing?',
+                'Would you agree that you are able to reach your full potential at work?': 'Would you agree that you are able to reach your full potential at work?',
                 'How likely is it that you would recommend this company as an inclusive place to work to a friend or colleague?': 'How likely is it that you would recommend this business as an inclusive place to work to a friend or colleague?',
                 'In the next 6 months, are you considering leaving this organisation because you do not feel respected or that you belong?': 'Considering_Leaveing_in_Next_6_Months',
                 'Are there any other areas related to inclusion and diversity where you feel this organisation could do better, that have not been covered here?': 'What other comments would you like to make in relation to D&I at this organisation?'
@@ -231,10 +231,10 @@ rename_columns = {'How long have you worked at the organization?': 'Service_Leng
 standard_questions = ['How long have you worked at the organization?',
                     'What is your annual salary',
                     'Which department do you work in?',
-                    # 'Which part of the business do you work in?',
-                    # 'Which function do you work in?',
-                    # 'Which grade do you work at?',
-                    # 'Which brand do you work in?',
+                    'Which part of the business do you work in?',
+                    'Which function do you work in?',
+                    'Which grade do you work at?',
+                    'Which brand do you work in?',
                     'What is your role in the organisation?',
                     'Job Share',
                     'Flexibility with start and finish times',
@@ -324,13 +324,13 @@ standard_questions = ['How long have you worked at the organization?',
                     'Working here is important to the way that I think of myself as a person',
                     'The information and resources I need to do my job effectively are readily available',
                     'The company hires people from diverse backgrounds',
-                    'Would you agree that you are able to reach your full potential at work?',
                     'Which of the following statements best describes how you feel in your team',
                     'Is there anything this organisation can do to recruit a more diverse group of employees?',
                     'What things do you think the organisation does well in terms of creating a diverse and inclusive workplace?',
                     'What things do you think the organisation should be doing to create a work environment where everyone is respected and can thrive regardless of personal circumstances or background?',
                     'In what ways can this organisation ensure that everyone is treated fairly and can thrive?', ## Is it the same as above question???
                     'We want to support employees in setting up networks for our people if there is demand. What ERG would you be interested in us establishing?',
+                    'Would you agree that you are able to reach your full potential at work?',
                     'How likely is it that you would recommend this company as an inclusive place to work to a friend or colleague?',
                     'In the next 6 months, are you considering leaving this organisation because you do not feel respected or that you belong?',
                     'Are there any other areas related to inclusion and diversity where you feel this organisation could do better, that have not been covered here?'
@@ -390,27 +390,6 @@ if page == "Questions":
                     return x
 
                 df = df.applymap(replace_values)
-
-
-                # Select string columns
-                # string_columns = df.select_dtypes(include=['object']).columns
-                # string_columns = [
-                #     'Self_Describe_Gender', 'Self_Describe_Sexual_Orientation', 'Difficulty_Comment', 'Flexible_Working_Comments', 
-                #     'Advice_for_Senior_Leadership_Team_re_EDI', 'Religion_Not_in_List', 'Ethnicity_Not_in_List', 'National_Identity__Not_in_List',
-                #     'What other comments would you like to make in relation to D&I at this organisation?',
-                #     'What ONE thing do you think the business should be doing to recruit a diverse range of employees?',
-                #     'What ONE thing do you think the business does well in terms of creating a diverse and inclusive workplace?',
-                #     'What ONE thing do you think the business should be doing to create a work environment where everyone is respected and can thrive regardless of personal circumstances or background?',
-                #     'In what ways can this organisation ensure that everyone is treated fairly and can thrive?', ## Is it the same as above question??? 
-                #     'We want to support employees in setting up networks for our people if there is demand. What ERG would you be interested in us establishing?'
-                #     ]
-                # df[string_columns] = df[string_columns].astype(str)
-                # # Apply the anonymization functions to string columns
-                # df[string_columns] = df[string_columns].applymap(anonymize_text)
-                # df[string_columns] = df[string_columns].applymap(replace_named_entities)
-
-                # df = df.applymap(anonymize_text)
-                # df = df.applymap(replace_named_entities)
 
                 # Initialize an empty list for the new column names
                 new_column_names = []
@@ -666,6 +645,10 @@ elif page == "Demographic Analysis":
             'Salary': ['Salary'],
             'Seniority in the Organisation': ['Organisational_Role'],
             'Departments': ['Department'],
+            'Different Parts in Organization': ['Organization_Part'],
+            'Function in Organization': ['Organization_Function'],
+            'Grade in Organization': ['Grade'],
+            'Brand in Organization': ['Brand'],
             'Types of Flexible Working': ['Job_Share', 'Flexibility_with_start_and_finish_times', 'Working_from_home', 'Flexible_Hours_Based_on_Output',
                                             'Remote_Working', 'Condensed_Hours', 'School_Hours', 'Term_Time', 'None_of_the_above', 'PNTS'],
             'Age Distribution': ['Age'],
@@ -765,6 +748,30 @@ elif page == "Demographic Analysis":
             ######################################################################
             elif visualization_key == "Departments":
                 plot_horizontal_bar_chart(df, 'Department', 'Department Distribution in the Organisation', 'Percentage', 'Department')
+                pass
+            ######################################################################
+            #                               Department                           #
+            ######################################################################
+            elif visualization_key == "Different Parts in Organization":
+                plot_horizontal_bar_chart(df, 'Organization_Part', 'Different Parts Distribution in the Organisation', 'Percentage', 'Part')
+                pass
+            ######################################################################
+            #                               Department                           #
+            ######################################################################
+            elif visualization_key == "Function in Organization":
+                plot_horizontal_bar_chart(df, 'Organization_Function', 'Function Distribution in the Organisation', 'Percentage', 'Function')
+                pass
+            ######################################################################
+            #                               Department                           #
+            ######################################################################
+            elif visualization_key == "Grade in Organization":
+                plot_horizontal_bar_chart(df, 'Grade', 'Grade Distribution in the Organisation', 'Percentage', 'Grade')
+                pass
+            ######################################################################
+            #                               Department                           #
+            ######################################################################
+            elif visualization_key == "Brand in Organization":
+                plot_horizontal_bar_chart(df, 'Brand', 'Brand Distribution in the Organisation', 'Percentage', 'Brand')
                 pass
             ######################################################################
             #               Types of flexlible working                           #
