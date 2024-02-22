@@ -34,7 +34,7 @@ from presidio_anonymizer.entities import OperatorConfig
 
 import spacy 
 #---------------------------------------------------------
-from text_analysis_module import process_text_data, perform_topic_modeling, summarize_text, display_summary, convert_df_to_csv_download_link, display_topics_and_docs, get_key_for_value
+from text_analysis_module import process_text_data, perform_topic_modeling, summarize_text, display_summary, convert_df_to_csv_download_link, display_topics_and_docs, get_key_for_value, replace_named_entities
 
 from visualization_module import create_sub_dataframes, update_group_dfs, plot_pie_chart, plot_horizontal_bar_chart, plot_group_responses, show_question_mapping_interface, average_salary
 
