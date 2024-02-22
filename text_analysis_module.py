@@ -249,4 +249,13 @@ llm_chain = LLMChain(prompt=prompt_summary, llm=llm)
 
 
 
+# Function to anonymize people and org names using spaCy's NER
+def replace_named_entities(text):
+    if isinstance(text, str):
+        doc = nlp(text)
+        for ent in doc.ents:
+            if ent.label_ in ['PERSON', 'ORG']:
+                text =text.replace(ent.text, f"[{ent.label_}]")
+    return text
+
 
