@@ -143,7 +143,7 @@ rename_columns = {'How long have you worked at the organization?': 'Service_Leng
                 'What best describes your gender?': 'Gender',
                 'Prefer to self describe your gender': 'Self_Describe_Gender',  
                 'Is your gender identity the same as the sex you were assigned at birth?': 'Gender_Identification_Same_as_Birth',
-                'Do you have a disability or long term health condition?': 'Disability_or_Long_Term_Health_Condition?',
+                'Do you have a disability or long term health condition?': 'Disability_or_Long_Term_Health_Condition',
                 'Do you have difficulty seeing, even if wearing glasses?': 'Seeing_Dificulty',
                 'Do you have difficulty hearing, even if using a hearing aid?': 'Hearing_Dificulty',
                 'Do you have difficulty walking or climbing steps?': 'Walking_Dificulty',
