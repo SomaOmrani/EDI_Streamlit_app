@@ -1780,7 +1780,7 @@ elif page == "Inclusion Analysis":
         ##############################################################################################
         #                          Considering_Leaveing_in_Next_6_Months                             # 
         ##############################################################################################
-        if selected_question == "Considering_Leaveing_in_Next_6_Months":
+        if selected_question == "In the next 6 months, are you considering leaving this organisation because you do not feel respected or that you belong?":
             column_name, chart_title = 'Considering_Leaveing_in_Next_6_Months', 'Leaving the Company in the Next 6 Month'
             plot_pie_chart(df, column_name, chart_title)
             #---------------------------------------------------------------------------------------------------------------------            
