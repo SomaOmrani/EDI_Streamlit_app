@@ -182,8 +182,9 @@ def plot_group_responses(selected_question, response_categories, group_dfs, colo
         group_values = []
         for group_name, group_df in group_dfs.items():
             # Exclude null values before calculating value counts and percentages
-            group_filtered_df = group_df.dropna(subset=[selected_question])
-            group_counts = group_filtered_df[selected_question].value_counts(normalize=True) * 100
+            # group_filtered_df = group_df.dropna(subset=[selected_question])
+            # group_counts = group_filtered_df[selected_question].value_counts(normalize=True) * 100
+            group_counts = group_df[selected_question].value_counts(normalize=True) * 100
             group_values.append(group_counts.get(response, 0))
 
         data.append(go.Bar(
