@@ -2134,6 +2134,7 @@ elif page == "Inclusion Analysis":
 elif page == "Text Analysis":
     st.header("Text Analysis Results")
     st.subheader("Please choose the open-ended question that you want to analyze.")
+    torch.cuda.empty_cache()
     # Check if data is loaded
     if 'df' in st.session_state and st.session_state['df'] is not None:
       df = st.session_state['df']
