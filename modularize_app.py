@@ -654,7 +654,7 @@ elif page == "Demographic Analysis":
             'Age Distribution': ['Age'],
             'Generation Distribution': ['Generation'],
             'Gender and gender identity': ['Gender'],
-            'Disability and long-term health conditions': ['Disability_or_Long_Term_Health_Condition'],
+            'Disability or long-term health conditions': ['Disability_or_Long_Term_Health_Condition'],
             'Disability and long-term health conditions': ['Seeing_Dificulty', 'Hearing_Dificulty', 'Walking_Dificulty', 'Remembering_Dificulty', 'SelfCare_Dificulty',
                                                             'Communicating_Dificulty', 'Raising_Water/Soda_Bottle_Dificulty', 'Picking_Up_Small_Objects_Dificulty'],
             'Mental health': ['How_often_feeling_worried_nervous_anxious', 'Level_of_last_worrying_anxiety_nervousness', 'How_often_feeling_depressed', 'Level_of_last_depression'],
@@ -1754,7 +1754,7 @@ elif page == "Inclusion Analysis":
             'Would you agree that you are able to reach your full potential at work?', ##
             'Which of the following statements best describes how you feel in your team',
             'How likely is it that you would recommend this business as an inclusive place to work to a friend or colleague?',
-            'Considering_Leaveing_in_Next_6_Months'
+            'In the next 6 months, are you considering leaving this organisation because you do not feel respected or that you belong?'
 
         ]
 
@@ -1763,7 +1763,8 @@ elif page == "Inclusion Analysis":
         filtered_question = {question for question in questions if question in df.columns}##########################The one in COLAB doesn't have this
         if all(item in df.columns for item in ['EDI_Priority_Senior_Leadership', 'EDI_Priority_Line_Manager', 'EDI_Priority_Peers', 'EDI_Priority_YourSelf']):
             filtered_question.add('In your opinion, how much of a priority is diversity and inclusion in the business to')
-
+        if 'Considering_Leaveing_in_Next_6_Months' in df.columns:
+            filtered_question.add('In the next 6 months, are you considering leaving this organisation because you do not feel respected or that you belong?')
         # Create the dropdown box
         selected_question = st.selectbox("Which question are you interested in?", filtered_question)
 
