@@ -4,50 +4,61 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 #---------------------------------------------------------
+
 def create_sub_dataframes(df):
     """
     Create and return sub dataframes based on specific conditions related to mental health, LGBT status, disabilities, gender, ethnicity, religion, and caring responsibilities.
     """
+   
+
     ### Mental Health Sub DataFrames
+    df_mental_health = pd.DataFrame()
     mental_health_columns_1 = ['How_often_feeling_worried_nervous_anxious', 'How_often_feeling_depressed']
     mental_health_columns_2 = ['Level_of_last_worrying_anxiety_nervousness', 'Level_of_last_depression']
     mental_health_levels_1 = ['Weekly', 'Monthly', 'Daily']
     mental_health_levels_2 = ['A lot', 'Somewhere in between a little and a lot']
 
-    df_mental_health = pd.DataFrame()
     if set(mental_health_columns_1 + mental_health_columns_2).issubset(df.columns):
+        
         for column in mental_health_columns_1:
             df_mental_health = pd.concat([df_mental_health, df[df[column].isin(mental_health_levels_1)]])
         for column in mental_health_columns_2:
             df_mental_health = pd.concat([df_mental_health, df[df[column].isin(mental_health_levels_2)]])
         df_mental_health = df_mental_health.drop_duplicates()
-    # Create 'has_mental_health' column in the main DataFrame
-    df['has_mental_health'] = 'No'
-    if not df_mental_health.empty:
-        df.loc[df_mental_health.index, 'has_mental_health'] = 'Yes'
+        # Create 'has_mental_health' column in the main DataFrame
+        df['has_mental_health'] = 'No'
+        if not df_mental_health.empty:
+            df.loc[df_mental_health.index, 'has_mental_health'] = 'Yes'
         
     ### LGBT Sub DataFrame
     df_LGBT = pd.DataFrame()
     if 'Sexual_Orientation' in df.columns:
         df_LGBT = df[df['Sexual_Orientation'].isin(['Bi', 'Gay man', 'Gay woman/lesbian'])]
-    # Create 'LGBT' column in the main DataFrame
-    df['LGBT'] = 'No'
-    if not df_LGBT.empty:
-        df.loc[df_LGBT.index, 'LGBT'] = 'Yes'
+        # Create 'LGBT' column in the main DataFrame
+        df['LGBT'] = 'No'
+        if not df_LGBT.empty:
+            df.loc[df_LGBT.index, 'LGBT'] = 'Yes'
 
     ### Disabilities Sub DataFrame
     disability_columns = ['Seeing_Dificulty', 'Hearing_Dificulty', 'Walking_Dificulty', 'Remembering_Dificulty', 'SelfCare_Dificulty', 'Communicating_Dificulty', 'Raising_Water/Soda_Bottle_Dificulty', 'Picking_Up_Small_Objects_Dificulty']
     difficulty_levels = ['Yes, some difficulty', 'Yes, a lot of difficulty', 'Cannot do it at all']
 
     df_disabilities = pd.DataFrame()
-    if set(disability_columns).issubset(df.columns):
-        for column in disability_columns:
-            df_disabilities = pd.concat([df_disabilities, df[df[column].isin(difficulty_levels)]])
-        df_disabilities = df_disabilities.drop_duplicates()
-    # Create 'Has_Disability' column in the main DataFrame
-    df['Has_Disability'] = 'No'
-    if not df_disabilities.empty:
-        df.loc[df_disabilities.index, 'Has_Disability'] = 'Yes'
+    if set(disability_columns).issubset(df.columns) or 'Disability_or_Long_Term_Health_Condition' in df.columns:
+        if set(disability_columns).issubset(df.columns):
+            
+            for column in disability_columns:
+                df_disabilities = pd.concat([df_disabilities, df[df[column].isin(difficulty_levels)]])
+            df_disabilities = df_disabilities.drop_duplicates()
+            # Create 'Has_Disability' column in the main DataFrame
+            df['Has_Disability'] = 'No'
+            if not df_disabilities.empty:
+                df.loc[df_disabilities.index, 'Has_Disability'] = 'Yes'
+
+        elif 'Disability_or_Long_Term_Health_Condition' in df.columns:
+            df_disabilities = df[df['Disability_or_Long_Term_Health_Condition'] == 'Yes']
+            # Create 'Has_Disability' column in the main DataFrame
+            df['Has_Disability'] = df['Disability_or_Long_Term_Health_Condition']
 
     ### Women Sub DataFrame
     df_women = pd.DataFrame()
@@ -79,6 +90,8 @@ def create_sub_dataframes(df):
     st.session_state['df_caring_responsibilities'] = df_caring_responsibilities
 
     return df_mental_health, df_LGBT, df_disabilities, df_women, df_minority_ethnicity, df_religious_beliefs, df_caring_responsibilities
+
+
 
 # Define a function to return a dictionary of groups and their corresponding dataframes
 def update_group_dfs(df, groups_info):
@@ -182,9 +195,8 @@ def plot_group_responses(selected_question, response_categories, group_dfs, colo
         group_values = []
         for group_name, group_df in group_dfs.items():
             # Exclude null values before calculating value counts and percentages
-            # group_filtered_df = group_df.dropna(subset=[selected_question])
-            # group_counts = group_filtered_df[selected_question].value_counts(normalize=True) * 100
-            group_counts = group_df[selected_question].value_counts(normalize=True) * 100
+            group_filtered_df = group_df.dropna(subset=[selected_question])
+            group_counts = group_filtered_df[selected_question].value_counts(normalize=True) * 100
             group_values.append(group_counts.get(response, 0))
 
         data.append(go.Bar(
