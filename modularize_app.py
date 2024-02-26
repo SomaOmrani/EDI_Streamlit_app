@@ -670,8 +670,8 @@ elif page == "Demographic Analysis":
             'Use of Flexible Working Options by Employees with Caring Responsibilities, Disabilities, Different Genders': ['Gender', 'Has_Caring_Responsibility', 'Has_Disability',
                                                                                                                             'Job_Share', 'Flexibility_with_start_and_finish_times', 'Working_from_home', 'Flexible_Hours_Based_on_Output',
                                                                                                                             'Remote_Working', 'Condensed_Hours', 'School_Hours', 'Term_Time', 'None_of_the_above', 'PNTS'],
-            'Mental Health Status Distribution by Department': ['Department', 'has_mental_health']
-            # 'Optional Filtering': ['Service_Length']
+            'Mental Health Status Distribution by Department': ['Department', 'has_mental_health'],
+            'Optional Filtering': []
         }
 
         # Filter options based on the columns present in the DataFrame
@@ -687,8 +687,7 @@ elif page == "Demographic Analysis":
             filtered_options.keys(),
             default=next(iter(filtered_options.keys()), None) # Default to the first available option or None
         )
-        # Add 'Optional Filtering' to the sidbar
-        selected_visualizations.append('Optional Filtering')
+        
 
         # Assuming df is your main DataFrame
         group_dfs = update_group_dfs(df, groups_info)
@@ -1947,109 +1946,109 @@ elif page == "Inclusion Analysis":
         ################################################################################################
         #   I feel that I might not belong at business when something negative happens to me at work   #
         ################################################################################################
-        if selected_question == "I feel that I might not belong at business when something negative happens to me at work":
+        elif selected_question == "I feel that I might not belong at business when something negative happens to me at work":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ##########################################################################
         #  I can voice a contrary opinion without fear of negative consequences  #
         ##########################################################################
-        if selected_question == "I can voice a contrary opinion without fear of negative consequences":
+        elif selected_question == "I can voice a contrary opinion without fear of negative consequences":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ########################################################################
         # I often worry I do not have things in common with others at business #
         ########################################################################
-        if selected_question == "I often worry I do not have things in common with others at business":
+        elif selected_question == "I often worry I do not have things in common with others at business": 
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################
         #         I feel like my colleagues understand who I really am       #
         ######################################################################
-        if selected_question == "I feel like my colleagues understand who I really am":
+        elif selected_question == "I feel like my colleagues understand who I really am":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################
         #     I feel respected and valued by my colleagues at business       #
         ######################################################################
-        if selected_question == "I feel respected and valued by my colleagues at business":
+        elif selected_question == "I feel respected and valued by my colleagues at business":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################
         #             I feel respected and valued by my manager              #
         ######################################################################
-        if selected_question == "I feel respected and valued by my manager":
+        elif selected_question == "I feel respected and valued by my manager":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ########################################################################
         #       I feel confident I can develop my career at at business        #
         ########################################################################
-        if selected_question == "I feel confident I can develop my career at at business":
+        elif selected_question == "I feel confident I can develop my career at at business":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################
         #           When I speak up at work, my opinion is valued            #
         ######################################################################
-        if selected_question == "When I speak up at work, my opinion is valued":
+        elif selected_question == "When I speak up at work, my opinion is valued":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         #################################################################################################
         #      Administrative tasks that don’t have a specific owner, are divided fairly at business    #
         #################################################################################################
-        if selected_question == "Administrative tasks that don’t have a specific owner, are divided fairly at business":
+        elif selected_question == "Administrative tasks that don’t have a specific owner, are divided fairly at business":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################
         #             Promotion decisions are fair at business               #
         ######################################################################
-        if selected_question == "Promotion decisions are fair at business":
+        elif selected_question == "Promotion decisions are fair at business":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################
         #                My job performance is evaluated fairly              #
         ######################################################################
-        if selected_question == "My job performance is evaluated fairly":
+        elif selected_question == "My job performance is evaluated fairly":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ################################################################################################
         #         Business believes that people can always improve their talents and abilities         #
         ################################################################################################
-        if selected_question == "Business believes that people can always improve their talents and abilities":
+        elif selected_question == "Business believes that people can always improve their talents and abilities": 
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################################################################
         #          Business believes that people have a certain amount of talent, and they can’t do much to change it        #
         ######################################################################################################################
-        if selected_question == "Business believes that people have a certain amount of talent, and they can’t do much to change it":
+        elif selected_question == "Business believes that people have a certain amount of talent, and they can’t do much to change it":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################################################
         #           Working at Business is important to the way that I think of myself as a person           #
         ######################################################################################################
-        if selected_question == "Working at Business is important to the way that I think of myself as a person":
+        elif selected_question == "Working at Business is important to the way that I think of myself as a person":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################################################
         #            The information and resources I need to do my job effectively are available             #
         ######################################################################################################
-        if selected_question == "The information and resources I need to do my job effectively are available":
+        elif selected_question == "The information and resources I need to do my job effectively are available":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ######################################################################
         #          Business hires people from diverse backgrounds            #
         ######################################################################
-        if selected_question == "Business hires people from diverse backgrounds":
+        elif selected_question == "Business hires people from diverse backgrounds":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ########################################################################################
         #       Would you agree that you are able to reach your full potential at work?        #
         ########################################################################################
-        if selected_question == "Would you agree that you are able to reach your full potential at work?":
+        elif selected_question == "Would you agree that you are able to reach your full potential at work?":
             plot_group_responses(selected_question, response_categories, group_dfs, colors)
 
         ###################################################################################################
         #           Which of the following statements best describes how you feel in your team            #
         ###################################################################################################
-        if selected_question == "Which of the following statements best describes how you feel in your team":
+        elif selected_question == "Which of the following statements best describes how you feel in your team":
             response_categories = ['Key Component', 'Some Influence', 'Safe Voicing', 'Unsafe Voicing', 'Ignored by Others']
 
             colors = {
@@ -2066,7 +2065,7 @@ elif page == "Inclusion Analysis":
         ######################################################################################################################################
         #           How likely is it that you would recommend this business as an inclusive place to work to a friend or colleague?          #
         ######################################################################################################################################
-        if selected_question == "How likely is it that you would recommend this business as an inclusive place to work to a friend or colleague?":
+        elif selected_question == "How likely is it that you would recommend this business as an inclusive place to work to a friend or colleague?":
             # Function to calculate NPS and percentages
             def calculate_nps_details(scores):
                 promoters = (scores >= 9).sum()
