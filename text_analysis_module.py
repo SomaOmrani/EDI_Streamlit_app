@@ -86,7 +86,7 @@ def display_topics_and_docs(df, question):
                 st.markdown(f"- {point}")
 
         st.markdown("##### Examples:")
-        for i in len(representative_docs):
+        for i in range(len(representative_docs)):
             st.markdown(representative_docs[i])
 
 # Save results to CSV
