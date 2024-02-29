@@ -48,7 +48,7 @@ if 'df' not in st.session_state:
 #     st.session_state['df'] = pd.DataFrame()
 
 # Sidebar for navigation
-page = st.sidebar.selectbox("Choose a page", ["Questions", "Demographic Analysis", "Social Mobility Analysis", "Inclusion Analysis", "Text Analysis"])
+page = st.sidebar.selectbox("Choose a page", ["Questions", "Diversity Demographics", "Social Mobility", "Inclusive Culture", "Qualitative feedback from the survey"])
 
 
 # # Initialize the Presidio Analyzer and Anonymizer engines
@@ -626,10 +626,14 @@ if page == "Questions":
 
 
 # # Page content
-elif page == "Demographic Analysis":
+elif page == "Diversity Demographics":
 # if page == "Demographic Analysis":
-    st.header("Demographic Analysis")
-    st.subheader("Please select the desired analysis from the sidebar on the right.")
+    st.header("Diversity Demographics")
+    st.subheader("""
+                 This section shows a snapshot of the organisation's diversity and representation.
+
+                 Please select the desired analysis from the sidebar on the right.
+                 """)
     
     # Ensure the data is loaded
     if 'df' in st.session_state and st.session_state['df'] is not None:
@@ -1596,8 +1600,8 @@ elif page == "Demographic Analysis":
 
 
 
-elif page == "Social Mobility Analysis":
-    st.header("Social Mobility Analysis")
+elif page == "Social Mobility":
+    st.header("Social Mobility")
     # Ensure the data is loaded
     if 'df' in st.session_state and st.session_state['df'] is not None:
         df = st.session_state['df']
@@ -1710,8 +1714,8 @@ elif page == "Social Mobility Analysis":
 
 
 
-elif page == "Inclusion Analysis":
-    st.header("Inclusion Analysis")
+elif page == "Inclusive Culture":
+    st.header("Inclusive Culture")
     st.subheader("Please select the desired analysis from the the dropdown box.")
     
     # Ensure the data is loaded
@@ -2130,8 +2134,8 @@ elif page == "Inclusion Analysis":
 ################################
 ################################
 ################################
-elif page == "Text Analysis":
-    st.header("Text Analysis Results")
+elif page == "Qualitative feedback from the survey":
+    st.header("Qualitative feedback from the survey")
     st.subheader("Please choose the open-ended question that you want to analyze.")
     torch.cuda.empty_cache()
     # Check if data is loaded
