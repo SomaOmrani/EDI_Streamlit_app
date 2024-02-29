@@ -86,7 +86,7 @@ def display_topics_and_docs(df, question):
                 st.markdown(f"- {point}")
 
         st.markdown("##### Examples:")
-        st.write(representative_docs)
+        st.markdown(representative_docs)
 
 # Save results to CSV
 def get_key_for_value(my_dict, value_to_find):
@@ -246,7 +246,6 @@ template = """
 prompt_summary = PromptTemplate(template=template, input_variables=["text"])
 
 llm_chain = LLMChain(prompt=prompt_summary, llm=llm)
-
 
 
 # Function to anonymize people and org names using spaCy's NER
