@@ -75,9 +75,9 @@ def display_topics_and_docs(df, question):
         topic = row['Llama2'][0]
         representative_docs = row['Representative_Docs']
         summary = row['Summary']
-        st.markdown(f"**Topic: {topic}**")
+        st.markdown(f"**Topic of the cluster: {topic}**")
         
-        st.markdown("##### Key Insights in this cluster:")
+        st.markdown("####### Key Insights in this cluster:")
         # Use regex to find bullet points
         bullet_points = re.split(r'\n*[-*]\s|\n*\d+\.\s|\n+', summary)
         for point in bullet_points:
@@ -85,8 +85,13 @@ def display_topics_and_docs(df, question):
             if point:  # Check if the point is not empty
                 st.markdown(f"- {point}")
 
-        st.markdown("##### Examples:")
-        st.markdown(representative_docs)
+        st.markdown("####### Examples:")
+        # Iterate over the list and concatenate each item with a line break
+        docs_text = '\n'.join(representative_docs)
+
+        # Display the concatenated text using st.markdown
+        st.markdown(docs_text)
+        # st.markdown(representative_docs)
 
 # Save results to CSV
 def get_key_for_value(my_dict, value_to_find):
