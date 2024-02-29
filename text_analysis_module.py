@@ -75,7 +75,7 @@ def display_topics_and_docs(df, question):
         topic = row['Llama2'][0]
         representative_docs = row['Representative_Docs']
         summary = row['Summary']
-        st.markdown(f"**Topic of the cluster: {topic}**")
+        st.markdown(f"#### **Topic of the cluster: {topic}**")
         
         st.markdown("####### Key Insights in this cluster:")
         # Use regex to find bullet points
