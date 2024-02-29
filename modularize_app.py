@@ -117,7 +117,7 @@ groups_info = {
 # Inclusion
 #################################################################################
 
-    ################################################################################
+################################################################################
 
 rename_columns = {'How long have you worked at the organization?': 'Service_Length',
                 'What is your annual salary':'Salary',
@@ -1166,7 +1166,7 @@ elif page == "Diversity Demographics":
             #                             Sexuality                              #
             ######################################################################
             elif visualization_key == "Sexuality":
-                column_name, chart_title = 'Sexuality', 'Sexual Orientation'
+                column_name, chart_title = 'Sexual_Orientation', 'Sexual Orientation'
                 plot_pie_chart(df, column_name, chart_title)
                 #-------------------------------------------------------------------------------------------
                 if 'Self_Describe_Sexual_Orientation' in df.columns:
