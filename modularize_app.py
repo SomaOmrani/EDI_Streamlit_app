@@ -583,7 +583,14 @@ if page == "Questions":
                 # Call the function to created sub dataframes 
                 if 'df' in st.session_state and st.session_state['df'] is not None:
                     df_mental_health, df_LGBT, df_disabilities, df_women, df_minority_ethnicity, df_religious_beliefs, df_caring_responsibilities = create_sub_dataframes(df)
-
+                    ### Update session state
+                    st.session_state['df_mental_health'] = df_mental_health
+                    st.session_state['df_LGBT'] = df_LGBT
+                    st.session_state['df_disabilities'] = df_disabilities
+                    st.session_state['df_women'] = df_women
+                    st.session_state['df_minority_ethnicity'] = df_minority_ethnicity
+                    st.session_state['df_religious_beliefs'] = df_religious_beliefs
+                    st.session_state['df_caring_responsibilities'] = df_caring_responsibilities
                 #**********************************************************************************************
                 # if st.checkbox('Show processed data'):
                 #         # st.write(df.head())
@@ -608,6 +615,14 @@ if page == "Questions":
                     # Call the function to created sub dataframes 
                     if 'df' in st.session_state and st.session_state['df'] is not None:
                         df_mental_health, df_LGBT, df_disabilities, df_women, df_minority_ethnicity, df_religious_beliefs, df_caring_responsibilities = create_sub_dataframes(df)
+                        ### Update session state
+                        st.session_state['df_mental_health'] = df_mental_health
+                        st.session_state['df_LGBT'] = df_LGBT
+                        st.session_state['df_disabilities'] = df_disabilities
+                        st.session_state['df_women'] = df_women
+                        st.session_state['df_minority_ethnicity'] = df_minority_ethnicity
+                        st.session_state['df_religious_beliefs'] = df_religious_beliefs
+                        st.session_state['df_caring_responsibilities'] = df_caring_responsibilities
                     #**********************************************************************************************
                         
                     if st.checkbox('Show data'):
@@ -692,6 +707,18 @@ elif page == "Diversity Demographics":
             default=next(iter(filtered_options.keys()), None) # Default to the first available option or None
         )
         
+
+        # #******************************** New created sub dataframes *************************************#
+        # # Call the function to created sub dataframes 
+        # df_mental_health, df_LGBT, df_disabilities, df_women, df_minority_ethnicity, df_religious_beliefs, df_caring_responsibilities = create_sub_dataframes(df)
+        # ### Update session state
+        # st.session_state['df_mental_health'] = df_mental_health
+        # st.session_state['df_LGBT'] = df_LGBT
+        # st.session_state['df_disabilities'] = df_disabilities
+        # st.session_state['df_women'] = df_women
+        # st.session_state['df_minority_ethnicity'] = df_minority_ethnicity
+        # st.session_state['df_religious_beliefs'] = df_religious_beliefs
+        # st.session_state['df_caring_responsibilities'] = df_caring_responsibilities
 
         # Assuming df is your main DataFrame
         group_dfs = update_group_dfs(df, groups_info)
@@ -831,7 +858,7 @@ elif page == "Diversity Demographics":
                 # Perform text summarization
                 if 'Flexible_Working_Comments' in df.columns:
 
-                # Initialize a list in session state for storing analysis results if it doesn't exist
+                  # Initialize a list in session state for storing analysis results if it doesn't exist
                   if 'flexible_analysis_results' not in st.session_state:
                       st.session_state['flexible_analysis_results'] = {}
 
