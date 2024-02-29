@@ -26,7 +26,7 @@ from langchain import PromptTemplate,  LLMChain
 #----------------------------------------------
 import base64
 #----------------------------------------------
-
+import spacy 
 #---------------------------------------------------------
 
 #################################################################################
@@ -249,6 +249,8 @@ llm_chain = LLMChain(prompt=prompt_summary, llm=llm)
 
 
 # Function to anonymize people and org names using spaCy's NER
+nlp = spacy.load("en_core_web_lg")
+
 def replace_named_entities(text):
     if isinstance(text, str):
         doc = nlp(text)
