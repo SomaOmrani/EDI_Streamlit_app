@@ -33,7 +33,7 @@ def create_sub_dataframes(df):
     ### LGBT Sub DataFrame
     df_LGBT = pd.DataFrame()
     if 'Sexual_Orientation' in df.columns:
-        df_LGBT = df[df['Sexual_Orientation'].isin(['Bi', 'Gay man', 'Gay woman/lesbian'])]
+        df_LGBT = df[~df['Sexual_Orientation'].isin(['Heterosexual/straight'])]
         # Create 'LGBT' column in the main DataFrame
         df['LGBT'] = 'No'
         if not df_LGBT.empty:
