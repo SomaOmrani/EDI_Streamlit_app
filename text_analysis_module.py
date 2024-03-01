@@ -99,6 +99,8 @@ def get_key_for_value(my_dict, value_to_find):
 #                                   Topic Modeling                                       #
 ##########################################################################################
 model_id = 'meta-llama/Llama-2-13b-chat-hf'
+
+torch.cuda.empty_cache()
 #-------------------------------------------
 # Logging to hugging face
 login("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")
